@@ -10,6 +10,7 @@ import {
 import React, { useState } from "react";
 import { Octicons } from '@expo/vector-icons';
 import { useNavigation } from "expo-router";
+import { validarLogin } from "../assets/componentes/validacao.jsx"
 
 import Logo from "@/assets/images/comidaQuenteLogo.png"
 
@@ -52,12 +53,10 @@ export default function PaginaLogin() {
         <View style={styles.formAction}>
           <TouchableOpacity
             onPress={() => {
-               if (username === "admin" && password === "admin") {
-                 navigation.navigate("PaginaRegistroRefeicao")
-               } else {
-                 alert("Erro. Senha inválida")
-               }
-              // navigation.navigate("PaginaRegistroRefeicao")
+              if(validarLogin(username, password))
+                navigation.navigate("PaginaRegistroRefeicao")
+              else
+                alert("Erro/n Login ou senha inválida")
             }}
           >
             <View style={styles.button}>
